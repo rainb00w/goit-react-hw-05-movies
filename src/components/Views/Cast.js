@@ -25,8 +25,8 @@ const Cast = () => {
                 src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
                 width="100px"
               ></img>
-              <p>${item.name}</p>
-              <p>${item.character}</p>
+              <p>{item.name}</p>
+              <p>{item.character}</p>
             </li>
           );
         })}
