@@ -15,7 +15,7 @@ export default function App() {
       <Navigation />
       <Suspense fallback="">
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/goit-react-hw-05-movies" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="movies/:itemId" element={<MoviePage />}>
             <Route path="cast" element={<Cast />} replace={true} />
