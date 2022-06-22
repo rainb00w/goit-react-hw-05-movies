@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as FetchApi from '../FetchApi/FetchApi';
+import styles from './views.module.css';
 
 const Cast = () => {
   const [cast, setCast] = useState(null);
@@ -19,7 +20,7 @@ const Cast = () => {
       {cast &&
         cast.map(item => {
           return (
-            <li key={item.id}>
+            <li key={item.id} className={styles.listItem}>
               <img
                 alt="Movie Poster"
                 src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}

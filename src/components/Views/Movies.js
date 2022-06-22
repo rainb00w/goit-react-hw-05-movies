@@ -1,6 +1,7 @@
 import * as FetchApi from '../FetchApi/FetchApi';
 import React, { useState } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import styles from './views.module.css';
 
 const Movies = ({ onSubmit }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,8 +41,8 @@ const Movies = ({ onSubmit }) => {
   return (
     <>
       <header className="">
-        <form className="" onSubmit={handleSubmit}>
-          <button type="submit" className="">
+        <form className={styles.serchForm} onSubmit={handleSubmit}>
+          <button type="submit" className={styles.button12}>
             <span className="">Search</span>
           </button>
           <input
@@ -56,18 +57,19 @@ const Movies = ({ onSubmit }) => {
           />
         </form>
       </header>
-
-      {filmsList &&
-        filmsList.map(item => {
-          return (
-            <li key={item.id}>
-              <Link to={`/movies/${item.id}`} state={{ from: location }}>
-                {' '}
-                {item.title}
-              </Link>
-            </li>
-          );
-        })}
+      <div className={styles.homeList}>
+        {filmsList &&
+          filmsList.map(item => {
+            return (
+              <li key={item.id} className={styles.listItem}>
+                <Link to={`/movies/${item.id}`} state={{ from: location }}>
+                  {' '}
+                  {item.title}
+                </Link>
+              </li>
+            );
+          })}
+      </div>
     </>
   );
 };

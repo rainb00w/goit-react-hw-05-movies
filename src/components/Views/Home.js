@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as FetchApi from '../FetchApi/FetchApi';
+import styles from './views.module.css';
 
 const Home = () => {
   const [filmsList, setFilmsList] = useState(null);
@@ -12,21 +13,20 @@ const Home = () => {
       .catch(error => console.log(error));
   }, []);
 
-  //   console.log(filmsList, Date.now());
-
   return (
-    <>
+    <div className={styles.homeList}>
+      <h2>Trending today</h2>
       {filmsList &&
         filmsList.map(item => {
           return (
-            <li key={item.id}>
+            <li key={item.id} className={styles.listItem}>
               <Link to={`/movies/${item.id}`} state={{ from: location }}>
                 {item.title}
               </Link>
             </li>
           );
         })}
-    </>
+    </div>
   );
 };
 

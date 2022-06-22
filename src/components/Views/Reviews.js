@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as FetchApi from '../FetchApi/FetchApi';
+import styles from './views.module.css';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState(null);
@@ -14,19 +15,20 @@ const Reviews = () => {
       });
   }, [itemId]);
 
+  // console.log('REVIEWS', reviews);
   return (
-    <>
-      {' '}
-      {reviews &&
-        reviews.map(item => {
-          return (
-            <li key={item.id}>
-              <p>{item.author}</p>
-              <p>{item.content}</p>
-            </li>
-          );
-        })}
-    </>
+    <div className={styles.reviewsContainer}>
+      {reviews && reviews.length > 0
+        ? reviews.map(item => {
+            return (
+              <li key={item.id} className={styles.listItem}>
+                <p className={styles.boldFont}>{item.author}</p>
+                <p>{item.content}</p>
+              </li>
+            );
+          })
+        : `We don't have any review for this movie`}
+    </div>
   );
 };
 
