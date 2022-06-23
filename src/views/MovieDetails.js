@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
-import * as FetchApi from '../FetchApi/FetchApi';
+import * as FetchApi from '../services/FetchApi';
 import styles from './views.module.css';
 
 const MoviePage = () => {
@@ -9,19 +9,20 @@ const MoviePage = () => {
   const { itemId } = useParams();
   const location = useLocation();
 
+  console.log(film);
   useEffect(() => {
-    FetchApi.FetchMovieById(itemId)
-      .then(movieInfo => setFilm(movieInfo.data))
-      .catch(error => {
-        console.log(error);
-        setError(error);
-      });
-  }, [itemId]);
+    if (!film) {
+      FetchApi.FetchMovieById(itemId)
+        .then(movieInfo => setFilm(movieInfo.data))
+        .catch(error => {
+          console.log(error);
+          setError(error);
+        });
+    }
+  }, [itemId, film]);
 
   const path = location?.state?.from ?? '/';
 
-  console.log(film?.release_date.substring(0, 4));
-  // console.log(location.state.from);
   return (
     <div className={styles.homeList}>
       <div>

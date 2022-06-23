@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as FetchApi from '../FetchApi/FetchApi';
+import * as FetchApi from '../services/FetchApi';
 import styles from './views.module.css';
 
 const Home = () => {

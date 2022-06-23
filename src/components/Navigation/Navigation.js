@@ -5,7 +5,7 @@ const Navigation = () => (
   <nav className={styles.navContainer}>
     <NavLink
       exact="true"
-      to="/goit-react-hw-05-movies"
+      to="/"
       className={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
     >
       Home

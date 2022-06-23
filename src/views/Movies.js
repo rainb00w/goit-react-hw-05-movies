@@ -1,5 +1,5 @@
-import * as FetchApi from '../FetchApi/FetchApi';
-import React, { useState } from 'react';
+import * as FetchApi from '../services/FetchApi';
+import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import styles from './views.module.css';
 
@@ -11,13 +11,16 @@ const Movies = ({ onSubmit }) => {
 
   const query = searchParams.get('query');
 
-  if (query !== null) {
-    FetchApi.FetchMovieByName(query)
-      .then(articles => {
-        setFilmsList(articles.data.results);
-      })
-      .catch(error => console.log(error));
-  }
+  useEffect(() => {
+    if (query !== null) {
+      setSearchQuery(query);
+      FetchApi.FetchMovieByName(query)
+        .then(articles => {
+          setFilmsList(articles.data.results);
+        })
+        .catch(error => console.log(error));
+    }
+  }, [query]);
 
   const handleChange = event => {
     setSearchQuery(event.currentTarget.value);

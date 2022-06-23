@@ -1,21 +1,22 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import Loader from './views/Loader';
+import Navigation from './components/Navigation/Navigation';
 
-const Home = lazy(() => import('./Views/Home'));
-const Movies = lazy(() => import('./Views/Movies'));
-const MoviePage = lazy(() => import('./Views/MovieDetails'));
-const NotFound = lazy(() => import('./Views/NotFound'));
-const Reviews = lazy(() => import('./Views/Reviews'));
-const Cast = lazy(() => import('./Views/Cast'));
-const Navigation = lazy(() => import('../components/Navigation/Navigation'));
+const Home = lazy(() => import('./views/Home'));
+const Movies = lazy(() => import('./views/Movies'));
+const MoviePage = lazy(() => import('./views/MovieDetails'));
+const NotFound = lazy(() => import('./views/NotFound'));
+const Reviews = lazy(() => import('./views/Reviews'));
+const Cast = lazy(() => import('./views/Cast'));
 
 export default function App() {
   return (
     <>
       <Navigation />
-      <Suspense fallback="">
+      <Suspense fallback={<Loader />}>
         <Routes>
-          <Route exact path="/goit-react-hw-05-movies" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="movies/:itemId" element={<MoviePage />}>
             <Route path="cast" element={<Cast />} replace={true} />
