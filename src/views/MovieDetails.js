@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import Loader from './Loader';
 import * as FetchApi from '../services/FetchApi';
 import styles from './views.module.css';
 
@@ -73,7 +74,9 @@ const MoviePage = () => {
         </li>
       </div>
 
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
